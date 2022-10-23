@@ -1,0 +1,32 @@
+
+# Kconfig file for package littled
+menuconfig PKG_USING_LITTLED
+    bool "Please add description of littled in English."
+    default n
+
+if PKG_USING_LITTLED
+
+    config PKG_LITTLED_PATH
+        string
+        default "/packages/peripherals/littled"
+
+    choice
+        prompt "Version"
+        default PKG_USING_LITTLED_LATEST_VERSION
+        help
+            Select the package version
+
+        config PKG_USING_LITTLED_V100
+            bool "v1.0.0"
+
+        config PKG_USING_LITTLED_LATEST_VERSION
+            bool "latest"
+    endchoice
+
+    config PKG_LITTLED_VER
+       string
+       default "v1.0.0"    if PKG_USING_LITTLED_V100
+       default "latest"    if PKG_USING_LITTLED_LATEST_VERSION
+
+endif
+
